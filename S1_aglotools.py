@@ -20,7 +20,6 @@ array=[1,5,8,7,0,-5,4-2,0,10,9,7]
 
 import numpy as np
 
-tab_zeros=np.zeros(12, dtype=np.int32)
 tab_fromList=np.array(array)
 
 def average_above_zero(array):
@@ -29,7 +28,13 @@ def average_above_zero(array):
         @param array: an array
 
     @return float
+
+    Raises ValueError if input param is not a list
     '''
+    if not(isinstance(array, list) or isinstance(array, np.ndarray)):
+        raise ValueError('average_above_zero, expected a list as input')
+    if len(array)==0:
+        raise ValueError('average_above_zero, expect a non empty array')
 
     som=0
     n=0
@@ -37,21 +42,20 @@ def average_above_zero(array):
         if array[i] > 0:
             som += int(array[i])
             n += 1
+        
+    if som==0 or n==0 :
+        raise ValueError('average_above_zero, no positive element found')
+    
+    average=som/n
+    
+    return average
 
-    try:
-        average=som/n
+        
 
-        return average
-    except Exception as e:
- 
-        return e.args
 
 
 average_one = average_above_zero(array)
 print("The fisrt average is {0}".format(average_one))
-
-average_two = average_above_zero(tab_zeros)
-print("The second average is {0} (An error)".format(average_two))
 
 average_three = average_above_zero(tab_fromList)
 print("The third average is {0} (same as first)".format(average_three))
@@ -65,6 +69,9 @@ def max_value(array):
         
         @return float, int
     '''
+    if not(isinstance(array, list) or isinstance(array, np.ndarray)):
+        raise ValueError('average_above_zero, expected a list as input')
+
     max=0
     index=0
     for i in range(len(array)):
@@ -89,9 +96,25 @@ def reverse_array(array):
         
         @return array
     '''
+    if not(isinstance(array, list) or isinstance(array, np.ndarray)):
+        raise ValueError('average_above_zero, expected a list as input')
+    if len(array)==0:
+        raise ValueError('average_above_zero, expect a non empty array')
+
     return array[::-1]
 
 def reverse_table(table):
+    '''Function reverse array
+        Arg:
+            @param array: an array
+        
+        @return array
+    '''
+    if not(isinstance(array, list) or isinstance(array, np.ndarray)):
+        raise ValueError('average_above_zero, expected a list as input')
+    if len(array)==0:
+        raise ValueError('average_above_zero, expect a non empty array')
+
     count=len(table)
     for i in range(count):
         temp=table[count-1]
