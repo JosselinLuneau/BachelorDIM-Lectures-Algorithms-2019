@@ -28,7 +28,7 @@ def average_above_zero(array):
     Arg:
         @param array: an array
 
-    Return the average of positive number above zero
+    @return float
     '''
 
     som=0
@@ -59,11 +59,11 @@ print("The third average is {0} (same as first)".format(average_three))
 ''' Exercice 2 : Table maximum value '''
 
 def max_value(array):
-    '''Function that find max value of an array and the index attached
+    '''Function that find max value of an array and it index
         Arg:
             @param array : an array
         
-        Returns max value and it index
+        @return float, int
     '''
     max=0
     index=0
