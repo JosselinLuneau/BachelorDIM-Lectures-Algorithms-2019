@@ -126,3 +126,5 @@ def reverse_table(table):
 reverse_array=reverse_table(array)
 print("Original array : {0}".format(array))
 print('Reversed array : {0}'.format(reverse_array))
+
+''' Exercice 4 : Bounding box '''
