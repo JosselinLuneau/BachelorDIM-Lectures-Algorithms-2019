@@ -79,3 +79,27 @@ print('The max number of \'array\' is {0} at index {1}'.format(array_max_one, in
 
 array_max_two = max(array)
 print('The max number of \'array\' is {0} (using existing method)'.format(array_max_two))
+
+''' Exercice 3 : Reverse a table: '''
+
+def reverse_array(array):
+    '''Function reverse array
+        Arg:
+            @param array: an array
+        
+        @return array
+    '''
+    return array[::-1]
+
+def reverse_table(table):
+    count=len(table)
+    for i in range(count):
+        temp=table[count-1]
+        table.pop()
+        table.insert(i, temp)
+
+    return table
+         
+reverse_array=reverse_table(array)
+print("Original array : {0}".format(array))
+print('Reversed array : {0}'.format(reverse_array))
