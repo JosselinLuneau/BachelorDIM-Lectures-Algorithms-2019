@@ -2,7 +2,7 @@
 Documentation Exercice 1 : Average.
  
 Learn algorithmie.
-Use Dyoxigen docs.
+Use Dioxygen docs.
 Use git and versionning.
 '''
 
@@ -22,10 +22,9 @@ tab_zeros=np.zeros(12, dtype=np.int32)
 tab_fromList=np.array(array)
 
 def average_above_zero(array):
-    '''
-    Function that return average from array
-    Args:
-        array: an array
+    '''Function that return average from array
+    Arg:
+        @param array: an array
     Return the average of positive number above zero
     '''
 
