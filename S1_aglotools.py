@@ -182,7 +182,7 @@ def roi_bbox(input_image, color_search=0):
             min_col_index = image_spot_index[i][1]
         if max_col_index < image_spot_index[i][1]: # get max col index
             max_col_index = image_spot_index[i][1] '''
-            
+
     # Only algo !!
     buffer_row=len(input_image)
     buffer_col=len(input_image[0])
@@ -209,3 +209,38 @@ def roi_bbox(input_image, color_search=0):
 bbox=roi_bbox(img)
 print("Boudind box {0}".format(bbox))
 
+''' Exercice 5 - Random array filling '''
+import random as rn
+char_array=np.ones((10,10), dtype=np.uint8)
+char_array *= 32 # 
+
+def random_fill_sparse(table, k, filled_value='X'):
+    '''Function that fill a specified number of K cells with cross values 
+        at random positions while the others cells should remain empty
+        Arg:
+            @param table: an array
+            @param k: an int value
+        
+        @return array
+        Raises ValueError if input param is not a list and if is empty
+    '''
+    if not(isinstance(table, list) or isinstance(table, np.ndarray)):
+        raise ValueError('random_fill_sparse, expected a list as first input')
+    if len(table)==0:
+        raise ValueError('random_fill_sparse, expect a non empty array')
+    if not(isinstance(k, int)):
+        raise ValueError('random_fill_sparse, expected a int as second input')
+    
+    table_len=len(table)
+    for i in range(k):
+        random_index=rn.randint(table_len)
+
+        if (table[random_index] != filled_value):
+            table[random_index] = filled_value
+
+    return table
+
+char_array_count=len(char_array)
+random_value=rn.randint(0, char_array_count)
+
+print(random_fill_sparse(char_array, random_value))
