@@ -29,7 +29,7 @@ def average_above_zero(array):
 
     @return float
 
-    Raises ValueError if input param is not a list
+    Raises ValueError if input param is not a list and if is empty
     '''
     if not(isinstance(array, list) or isinstance(array, np.ndarray)):
         raise ValueError('average_above_zero, expected a list as input')
@@ -68,9 +68,12 @@ def max_value(array):
             @param array : an array
         
         @return float, int
+        Raises ValueError if input param is not a list and if is empty
     '''
     if not(isinstance(array, list) or isinstance(array, np.ndarray)):
         raise ValueError('average_above_zero, expected a list as input')
+    if len(array)==0:
+        raise ValueError('average_above_zero, expect a non empty array')
 
     max=0
     index=0
@@ -95,6 +98,7 @@ def reverse_array(array):
             @param array: an array
         
         @return array
+        Raises ValueError if input param is not a list and if is empty
     '''
     if not(isinstance(array, list) or isinstance(array, np.ndarray)):
         raise ValueError('average_above_zero, expected a list as input')
@@ -109,18 +113,21 @@ def reverse_table(table):
             @param table: an array
         
         @return array
+       Raises ValueError if input param is not a list and if is empty
     '''
     if not(isinstance(array, list) or isinstance(array, np.ndarray)):
         raise ValueError('average_above_zero, expected a list as input')
     if len(array)==0:
         raise ValueError('average_above_zero, expect a non empty array')
 
-    count=len(table)
-    max_index=count-1
-    for i in range(count):
+    buffer=len(table)
+    iteration=int(buffer/2)
+    max_index=buffer-1
+    for i in range(iteration):
+        diffId=max_index-i
         temp=table[i]
-        table[i]=table[max_index]
-        table[max_index]=temp
+        table[i]=table[diffId]
+        table[diffId]=temp
 
     return table
 
@@ -130,24 +137,57 @@ print('Reversed array : {0}'.format(reverse_array))
 
 ''' Exercice 4 : Bounding box '''
 
-image=[[1,1,0,0],[0,0,1,1],[0,1,1,1]]
+# Créer sa matrice
+#matrix=np.zeros((10,10), dtype=np.int32)
+# matrix.shape = (3,4)
+#matrix[3:4, 4:8]=np.ones((3,4), dtype=np.int32)
+#print(matrix)
 
-def roi_bbox(input_image):
-    '''Function get bounding box of an image
+import cv2
+img=cv2.imread('img.png', 0)
+# cv2.imshow('Show image', img)
+# cv2.waitKey() # attend que l'image soit fermée
+
+def roi_bbox(input_image, color_search=0):
+    '''Function that compute the bounding box coordinates of the object
         Arg:
             @param input_image: an array
         
         @return np.array
+        Raises ValueError if input param is not a list and if is empty
     '''
-    if not(isinstance(input_image, list) or isinstance(array, np.ndarray)):
-        raise ValueError('average_above_zero, expected a list as input')
+    if not(isinstance(input_image, list) or isinstance(input_image, np.ndarray)):
+        raise ValueError('roi_bbox, expected a list as input')
     if len(input_image)==0:
-        raise ValueError('average_above_zero, expect a non empty array')
+        raise ValueError('roi_bbox, expect a non empty array')
     
-    input_image=np.array(input_image)
-    height, weight=input_image.shape
+    height, weight=input_image.shape # image size
+    image_spot_index=np.argwhere(input_image==color_search) # get pixel index of color search
+    buffer_col=len(image_spot_index)
     
-    return np.array([[0,0], [0, weight], [height, 0], [height, weight]])
+    max_row_index=0
+    min_row_index=height
+    max_col_index=0
+    min_col_index=weight
 
-print(roi_bbox(image))
+    for i_row in range(buffer_col): # browse index table
+        if min_row_index > image_spot_index[i_row][0]: # get min row index
+            min_row_index = image_spot_index[i_row][0]
+        if max_row_index < image_spot_index[i_row][0]: # get max row index
+            max_row_index = image_spot_index[i_row][0]
+
+        if min_col_index > image_spot_index[i_row][1]: # get min col index
+            min_col_index = image_spot_index[i_row][1]
+        if max_col_index < image_spot_index[i_row][1]: # get max col index
+            max_col_index = image_spot_index[i_row][1]
+        
+    return [
+            [min_col_index, min_row_index], 
+            [min_col_index, max_col_index], 
+            [min_row_index, max_row_index], 
+            [max_col_index, max_row_index]
+        ]
+
+bbox=roi_bbox(img)
+print("Boudind box {0}".format(bbox))
 
