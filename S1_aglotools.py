@@ -116,24 +116,38 @@ def reverse_table(table):
         raise ValueError('average_above_zero, expect a non empty array')
 
     count=len(table)
+    max_index=count-1
     for i in range(count):
-        temp=table[count-1]
-        table.pop()
-        table.insert(i, temp)
+        temp=table[i]
+        table[i]=table[max_index]
+        table[max_index]=temp
 
     return table
-         
-reverse_array=reverse_table(array)
+
 print("Original array : {0}".format(array))
+reverse_array=reverse_table(array)  
 print('Reversed array : {0}'.format(reverse_array))
 
 ''' Exercice 4 : Bounding box '''
 
+image=[[1,1,0,0],[0,0,1,1],[0,1,1,1]]
+
 def roi_bbox(input_image):
-    '''Function reverse array
+    '''Function get bounding box of an image
         Arg:
             @param input_image: an array
         
-        @return array
+        @return np.array
     '''
+    if not(isinstance(input_image, list) or isinstance(array, np.ndarray)):
+        raise ValueError('average_above_zero, expected a list as input')
+    if len(input_image)==0:
+        raise ValueError('average_above_zero, expect a non empty array')
+    
+    input_image=np.array(input_image)
+    height, weight=input_image.shape
+    
+    return np.array([[0,0], [0, weight], [height, 0], [height, weight]])
+
+print(roi_bbox(image))
 
