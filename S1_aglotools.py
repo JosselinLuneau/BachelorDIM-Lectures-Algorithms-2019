@@ -106,7 +106,7 @@ def reverse_array(array):
 def reverse_table(table):
     '''Function reverse array
         Arg:
-            @param array: an array
+            @param table: an array
         
         @return array
     '''
@@ -128,3 +128,12 @@ print("Original array : {0}".format(array))
 print('Reversed array : {0}'.format(reverse_array))
 
 ''' Exercice 4 : Bounding box '''
+
+def roi_bbox(input_image):
+    '''Function reverse array
+        Arg:
+            @param input_image: an array
+        
+        @return array
+    '''
+
