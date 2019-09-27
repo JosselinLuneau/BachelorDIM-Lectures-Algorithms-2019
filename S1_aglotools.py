@@ -162,24 +162,42 @@ def roi_bbox(input_image, color_search=0):
         raise ValueError('roi_bbox, expect a non empty array')
     
     height, weight=input_image.shape # image size
-    image_spot_index=np.argwhere(input_image==color_search) # get pixel index of color search
-    buffer_col=len(image_spot_index)
     
+    # Init max and min values
     max_row_index=0
     min_row_index=height
     max_col_index=0
     min_col_index=weight
+    
+    # get pixel index of color search (with numpy)
+    # image_spot_index=np.argwhere(input_image==color_search) 
+    # buffer_col=len(image_spot_index)
+    ''' for i in range(buffer_col): # browse index table
+        if min_row_index > image_spot_index[i][0]: # get min row index
+            min_row_index = image_spot_index[i][0]
+        if max_row_index < image_spot_index[i][0]: # get max row index
+            max_row_index = image_spot_index[i][0]
 
-    for i_row in range(buffer_col): # browse index table
-        if min_row_index > image_spot_index[i_row][0]: # get min row index
-            min_row_index = image_spot_index[i_row][0]
-        if max_row_index < image_spot_index[i_row][0]: # get max row index
-            max_row_index = image_spot_index[i_row][0]
+        if min_col_index > image_spot_index[i][1]: # get min col index
+            min_col_index = image_spot_index[i][1]
+        if max_col_index < image_spot_index[i][1]: # get max col index
+            max_col_index = image_spot_index[i][1] '''
+            
+    # Only algo !!
+    buffer_row=len(input_image)
+    buffer_col=len(input_image[0])
+    for i_row in range(buffer_row):
+        for i_col in range(buffer_col): # browse index table
+            if input_image[i_row][i_col] == color_search:
+                if min_row_index > i_row: # get min row index
+                    min_row_index = i_row
+                if max_row_index < i_row: # get max row index
+                    max_row_index = i_row
 
-        if min_col_index > image_spot_index[i_row][1]: # get min col index
-            min_col_index = image_spot_index[i_row][1]
-        if max_col_index < image_spot_index[i_row][1]: # get max col index
-            max_col_index = image_spot_index[i_row][1]
+                if min_col_index > i_col: # get min col index
+                    min_col_index = i_col
+                if max_col_index < i_col: # get max col index
+                    max_col_index = i_col
         
     return [
             [min_col_index, min_row_index], 
