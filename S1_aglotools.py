@@ -200,7 +200,7 @@ def random_fill_sparse(table, k, fill_value='X'):
         raise TypeError('random_fill_sparse, expected a list as first input')
     if len(table)==0:
         raise ValueError('random_fill_sparse, expect a no empty array')
-    if not(isinstance(k, (int, float)):
+    if not(isinstance(k, (int, float))):
         raise TypeError('random_fill_sparse, expected a int as second input')
     
     table_len_row=len(table)-1
