@@ -131,7 +131,7 @@ def reverse_table(table):
     return table
 
 print("Original array : {0}".format(array))
-reverse_array=reverse_table(array)  
+reverse_array=reverse_table(array.copy())  
 print('Reversed array : {0}'.format(reverse_array))
 
 ''' Exercice 4 : Bounding box '''
@@ -139,7 +139,7 @@ print('### Exercice 4 : Bounding box ###')
 
 # Créer sa matrice
 #matrix=np.zeros((10,10), dtype=np.int32)
-# matrix.shape = (3,4)
+#matrix.shape = (3,4)
 #matrix[3:4, 4:8]=np.ones((3,4), dtype=np.int32)
 #print(matrix)
 
