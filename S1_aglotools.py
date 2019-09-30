@@ -16,6 +16,7 @@ What can you expect if all the values are below zero ?
 '''
 
 ''' Exercice 1 : Average '''
+print('### Exercice 1 : Average ###')
 array=[1,5,8,7,0,-5,4-2,0,10,9,7]
 
 import numpy as np
@@ -50,10 +51,6 @@ def average_above_zero(array):
     
     return average
 
-        
-
-
-
 average_one = average_above_zero(array)
 print("The fisrt average is {0}".format(average_one))
 
@@ -61,6 +58,7 @@ average_three = average_above_zero(tab_fromList)
 print("The third average is {0} (same as first)".format(average_three))
 
 ''' Exercice 2 : Table maximum value '''
+print('### Exercice 2 : Table maximum value ###')
 
 def max_value(array):
     '''Function that find max value of an array and it index
@@ -90,7 +88,8 @@ print('The max number of \'array\' is {0} at index {1}'.format(array_max_one, in
 array_max_two = max(array)
 print('The max number of \'array\' is {0} (using existing method)'.format(array_max_two))
 
-''' Exercice 3 : Reverse a table: '''
+''' Exercice 3 : Reverse a table '''
+print('### Exercice 3 : Reverse a table ###')
 
 def reverse_array(array):
     '''Function reverse array
@@ -136,6 +135,7 @@ reverse_array=reverse_table(array)
 print('Reversed array : {0}'.format(reverse_array))
 
 ''' Exercice 4 : Bounding box '''
+print('### Exercice 4 : Bounding box ###')
 
 # Créer sa matrice
 #matrix=np.zeros((10,10), dtype=np.int32)
