@@ -1,6 +1,6 @@
 
 import pytest
-import S3_imgproc_tools as S3
+import scripts.S3_imgproc_tools as S3
 import numpy as np
 
 def test_invert_colors_manual_slow():

@@ -9,7 +9,7 @@ Created on Sun Sep 29 21:44:54 2019
 import pytest
 import numpy as np
 import cv2
-import S1_aglotools as algo
+import scripts.S1_aglotools as algo
 
 # INIT UTILS VARIABLES #
 array=[1,5,8,7,0,-5,4-2,0,10,9,7]
