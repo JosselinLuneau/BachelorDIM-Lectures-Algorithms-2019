@@ -33,7 +33,7 @@ def average_above_zero(array):
     Raises ValueError if input param is not a list and if is empty
     '''
     if not(isinstance(array, list) or isinstance(array, np.ndarray)):
-        raise ValueError('average_above_zero, expected a list as input')
+        raise TypeError('average_above_zero, expected a list as input')
     if len(array)==0:
         raise ValueError('average_above_zero, expect a non empty array')
 
@@ -42,7 +42,7 @@ def average_above_zero(array):
     buffer=len(array)
     for i in range(buffer):
         if not(isinstance(array[i], (int, float))):
-            raise ValueError('average_above_zero, list content must be integers')
+            raise TypeError('average_above_zero, list content must be integers')
 
         if array[i] > 0:
             som += int(array[i])
@@ -70,7 +70,7 @@ def max_value(array):
         Raises ValueError if input param is not a list and if is empty
     '''
     if not(isinstance(array, list) or isinstance(array, np.ndarray)):
-        raise ValueError('average_above_zero, expected a list as input')
+        raise TypeError('average_above_zero, expected a list as input')
     if len(array)==0:
         raise ValueError('average_above_zero, expect a non empty array')
 
@@ -78,7 +78,7 @@ def max_value(array):
     index=0
     for i in range(len(array)):
         if not(isinstance(array[i], (int, float))):
-            raise ValueError('average_above_zero, list content must be integers')
+            raise TypeError('average_above_zero, list content must be integers')
 
         if max < array[i]:
             max=array[i]
@@ -95,20 +95,20 @@ print('The max number of \'array\' is {0} (using existing method)'.format(array_
 ''' Exercice 3 : Reverse a table '''
 print('### Exercice 3 : Reverse a table ###')
 
-def reverse_array(array):
-    '''Function reverse array
+''' def reverse_array(array):
+    Function reverse array
         Arg:
             @param array: an array
         
         @return array
         Raises ValueError if input param is not a list and if is empty
-    '''
+
     if not(isinstance(array, list) or isinstance(array, np.ndarray)):
         raise ValueError('average_above_zero, expected a list as input')
     if len(array)==0:
         raise ValueError('average_above_zero, expect a non empty array')
 
-    return array[::-1]
+    return array[::-1]'''
 
 def reverse_table(table):
     '''Function reverse array
@@ -118,9 +118,9 @@ def reverse_table(table):
         @return array
        Raises ValueError if input param is not a list and if is empty
     '''
-    if not(isinstance(array, list) or isinstance(array, np.ndarray)):
-        raise ValueError('average_above_zero, expected a list as input')
-    if len(array)==0:
+    if not(isinstance(table, list) or isinstance(table, np.ndarray)):
+        raise TypeError('average_above_zero, expected a list as input')
+    if len(table)==0:
         raise ValueError('average_above_zero, expect a non empty array')
 
     buffer=len(table)
@@ -161,7 +161,7 @@ def roi_bbox(input_image, color_search=0):
         Raises ValueError if input param is not a list and if is empty
     '''
     if not(isinstance(input_image, list) or isinstance(input_image, np.ndarray)):
-        raise ValueError('roi_bbox, expected a list as input')
+        raise TypeError('roi_bbox, expected a list as input')
     if len(input_image)==0:
         raise ValueError('roi_bbox, expect a non empty array')
     
@@ -203,12 +203,12 @@ def roi_bbox(input_image, color_search=0):
                 if max_col_index < i_col: # get max col index
                     max_col_index = i_col
         
-    return [
+    return np.array([
             [min_col_index, min_row_index], 
             [min_col_index, max_col_index], 
             [min_row_index, max_row_index], 
             [max_col_index, max_row_index]
-        ]
+        ])
 
 bbox=roi_bbox(img)
 print("Boudind box {0}".format(bbox))
@@ -233,11 +233,11 @@ def random_fill_sparse(table, k, filled_value='X'):
         Raise ValueError if input param k is not an integer
     '''
     if not(isinstance(table, list) or isinstance(table, np.ndarray)):
-        raise ValueError('random_fill_sparse, expected a list as first input')
+        raise TypeError('random_fill_sparse, expected a list as first input')
     if len(table)==0:
         raise ValueError('random_fill_sparse, expect a no empty array')
     if not(isinstance(k, int)):
-        raise ValueError('random_fill_sparse, expected a int as second input')
+        raise TypeError('random_fill_sparse, expected a int as second input')
     
     table_len_row=len(table)-1
     table_len_col=table.shape[1]-1
