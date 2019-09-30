@@ -21,7 +21,7 @@ array=[1,5,8,7,0,-5,4-2,0,10,9,7]
 
 import numpy as np
 
-tab_fromList=np.array(array)
+# tab_fromList=np.array(array)
 
 def average_above_zero(array):
     '''Function that return average from array
@@ -39,13 +39,17 @@ def average_above_zero(array):
 
     som=0
     n=0
-    for i in range(len(array)):
+    buffer=len(array)
+    for i in range(buffer):
+        if not(isinstance(array[i], (int, float))):
+            raise ValueError('average_above_zero, list content must be integers')
+
         if array[i] > 0:
             som += int(array[i])
             n += 1
         
     if som==0 or n==0 :
-        raise ValueError('average_above_zero, no positive element found')
+        raise ZeroDivisionError('average_above_zero, no positive element found')
     
     average=som/n
     
@@ -53,9 +57,6 @@ def average_above_zero(array):
 
 average_one = average_above_zero(array)
 print("The fisrt average is {0}".format(average_one))
-
-average_three = average_above_zero(tab_fromList)
-print("The third average is {0} (same as first)".format(average_three))
 
 ''' Exercice 2 : Table maximum value '''
 print('### Exercice 2 : Table maximum value ###')
@@ -76,6 +77,9 @@ def max_value(array):
     max=0
     index=0
     for i in range(len(array)):
+        if not(isinstance(array[i], (int, float))):
+            raise ValueError('average_above_zero, list content must be integers')
+
         if max < array[i]:
             max=array[i]
             index=i

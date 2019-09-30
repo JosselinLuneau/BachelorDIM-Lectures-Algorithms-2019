@@ -23,12 +23,16 @@ def test_averrage_valueError_empty_list():
                 algo.average_above_zero([])
 
 def test_averrage_divide_by_zero():
-    with pytest.raises(ValueError):
+    with pytest.raises(ZeroDivisionError):
         algo.average_above_zero([0,0,0,0])
 
-def test_averrage_negtive_array_values():
-        with pytest.raises(ValueError):
+def test_averrage_negative_array_values():
+        with pytest.raises(ZeroDivisionError):
                 algo.average_above_zero([-2,-3,-8,-7])
+
+def test_averrage_char_list():
+        with pytest.raises(ValueError):
+                algo.average_above_zero(['1', 'e'])
 
 # Exercice 2
 def test_max_value():
@@ -42,3 +46,7 @@ def test_max_value_valueError_list():
 def test_max_value_valueError_empty_list():
         with pytest.raises(ValueError):
                 algo.max_value([])
+
+def test_max_value_char_list():
+        with pytest.raises(ValueError):
+                algo.max_value(['1', 'e'])
