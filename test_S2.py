@@ -103,6 +103,6 @@ def test_random_fill_sparse_valueError_empty_list():
 
 def test_random_fill_sparse_TypeError_int():
         with pytest.raises(TypeError):
-                algo.random_fill_sparse(8, 'a')
+                algo.random_fill_sparse(array, 'a')
 
 
