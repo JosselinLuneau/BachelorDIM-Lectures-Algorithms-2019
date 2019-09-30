@@ -9,6 +9,7 @@ Test step 2: modifier la ligne 14 en mettant autre chose que 'SEND' dans la vari
 #import urlparse
 import os
 import pika
+import config
 
 
 mode='SEND' #set 'SEND' mode is you will to send rather than receive messages
@@ -19,7 +20,7 @@ def callback(ch, method, properties, body):
 
 
 
-amqp_url='amqp://rkjpttnp:wN52LvoHFSXWoKjrKLZW7O9BidKKdC1R@dove.rmq.cloudamqp.com/rkjpttnp'
+amqp_url=config.COUD_AMQP_URL # get url of broker
 
 
 # Parse CLODUAMQP_URL (fallback to localhost)
