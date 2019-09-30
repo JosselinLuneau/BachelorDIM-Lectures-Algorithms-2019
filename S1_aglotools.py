@@ -16,12 +16,7 @@ What can you expect if all the values are below zero ?
 '''
 
 ''' Exercice 1 : Average '''
-print('### Exercice 1 : Average ###')
-array=[1,5,8,7,0,-5,4-2,0,10,9,7]
-
 import numpy as np
-
-# tab_fromList=np.array(array)
 
 def average_above_zero(array):
     '''Function that return average from array
@@ -55,11 +50,7 @@ def average_above_zero(array):
     
     return average
 
-average_one = average_above_zero(array)
-print("The fisrt average is {0}".format(average_one))
-
 ''' Exercice 2 : Table maximum value '''
-print('### Exercice 2 : Table maximum value ###')
 
 def max_value(array):
     '''Function that find max value of an array and it index
@@ -86,14 +77,7 @@ def max_value(array):
 
     return max, index
 
-array_max_one, index = max_value(array)
-print('The max number of \'array\' is {0} at index {1}'.format(array_max_one, index))
-
-array_max_two = max(array)
-print('The max number of \'array\' is {0} (using existing method)'.format(array_max_two))
-
 ''' Exercice 3 : Reverse a table '''
-print('### Exercice 3 : Reverse a table ###')
 
 ''' def reverse_array(array):
     Function reverse array
@@ -134,23 +118,7 @@ def reverse_table(table):
 
     return table
 
-print("Original array : {0}".format(array))
-reverse_array=reverse_table(array.copy())  
-print('Reversed array : {0}'.format(reverse_array))
-
 ''' Exercice 4 : Bounding box '''
-print('### Exercice 4 : Bounding box ###')
-
-# Créer sa matrice
-#matrix=np.zeros((10,10), dtype=np.int32)
-#matrix.shape = (3,4)
-#matrix[3:4, 4:8]=np.ones((3,4), dtype=np.int32)
-#print(matrix)
-
-import cv2
-img=cv2.imread('img.png', 0)
-# cv2.imshow('Show image', img)
-# cv2.waitKey() # attend que l'image soit fermée
 
 def roi_bbox(input_image, color_search=0):
     '''Function that compute the bounding box coordinates of the object
@@ -210,12 +178,8 @@ def roi_bbox(input_image, color_search=0):
             [max_col_index, max_row_index]
         ])
 
-bbox=roi_bbox(img)
-print("Boudind box {0}".format(bbox))
 
 ''' Exercice 5 - Random array filling '''
-
-print('### Exercice 5 - Random array filling ###')
 
 import random as rn
 char_array=np.ones((10,10), dtype=np.chararray)
@@ -229,8 +193,8 @@ def random_fill_sparse(table, k, fill_value='X'):
             @param k: an int value
         
         @return array
-        Raises ValueError if input param is not a list and if is empty
-        Raise ValueError if input param k is not an integer
+        Raises TypeError if input respectivly params are not a list and an integer
+        Raise ValueError list and if is empty
     '''
     if not(isinstance(table, list) or isinstance(table, np.ndarray)):
         raise TypeError('random_fill_sparse, expected a list as first input')
@@ -241,7 +205,8 @@ def random_fill_sparse(table, k, fill_value='X'):
     
     table_len_row=len(table)-1
     table_len_col=table.shape[1]-1
-    for i in range(0, k):
+    i=0
+    while i < k:
         # get random index
         random_index_row=rn.randint(0, table_len_row)
         random_index_col=rn.randint(0, table_len_col)
@@ -249,13 +214,52 @@ def random_fill_sparse(table, k, fill_value='X'):
         # Test if index isn't already filled
         if (table[random_index_row][random_index_col] != fill_value):
             table[random_index_row][random_index_col] = fill_value
-        else:
-            i-=1
+            i+=1
 
     return np.array(table)
 
 char_array_count=char_array.shape[0]*char_array.shape[1]
 random_value=rn.randint(0, char_array_count)
 
-print(random_value)
-print(random_fill_sparse(char_array, random_value))
+''''''''''''''''''''
+''' TEST SECTION '''
+''''''''''''''''''''
+'''
+print('### Exercice 1 : Average ###')
+array=[1,5,8,7,0,-5,4-2,0,10,9,7]
+
+average_one = average_above_zero(array)
+print("The fisrt average is {0}".format(average_one))
+
+print('### Exercice 2 : Table maximum value ###')
+
+array_max_one, index = max_value(array)
+print('The max number of \'array\' is {0} at index {1}'.format(array_max_one, index))
+
+array_max_two = max(array)
+print('The max number of \'array\' is {0} (using existing method)'.format(array_max_two))
+
+print('### Exercice 3 : Reverse a table ###')
+
+print("Original array : {0}".format(array))
+reverse_array=reverse_table(array.copy())  
+print('Reversed array : {0}'.format(reverse_array))
+
+print('### Exercice 4 : Bounding box ###')
+# Créer sa matrice
+#matrix=np.zeros((10,10), dtype=np.int32)
+#matrix.shape = (3,4)
+#matrix[3:4, 4:8]=np.ones((3,4), dtype=np.int32)
+#print(matrix)
+
+import cv2
+img=cv2.imread('img.png', 0)
+# cv2.imshow('Show image', img)
+# cv2.waitKey() # attend que l'image soit fermée
+
+bbox=roi_bbox(img)
+print("Boudind box {0}".format(bbox))
+
+print('### Exercice 5 - Random array filling ###')
+
+print(random_fill_sparse(char_array, random_value))'''
