@@ -237,8 +237,7 @@ def random_fill_sparse(table, k, filled_value='X'):
     
     table_len_row=len(table)-1
     table_len_col=table.shape[1]-1
-    i=1
-    while i <= k:
+    for i in range(k):
         # get random index
         random_index_row=rn.randint(0, table_len_row)
         random_index_col=rn.randint(0, table_len_col)
@@ -246,8 +245,6 @@ def random_fill_sparse(table, k, filled_value='X'):
         # Test if index isn't already filled
         if (table[random_index_row][random_index_col] != filled_value):
             table[random_index_row][random_index_col] = filled_value
-
-        i++
 
     return table
 
