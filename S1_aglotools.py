@@ -221,7 +221,7 @@ import random as rn
 char_array=np.ones((10,10), dtype=np.chararray)
 char_array *= ' ' #change all value to space
 
-def random_fill_sparse(table, k, filled_value='X'):
+def random_fill_sparse(table, k, fill_value='X'):
     '''Function that fill a specified number of K cells with cross values 
         at random positions while the others cells should remain empty
         Arg:
@@ -241,18 +241,21 @@ def random_fill_sparse(table, k, filled_value='X'):
     
     table_len_row=len(table)-1
     table_len_col=table.shape[1]-1
-    for i in range(k):
+    for i in range(0, k):
         # get random index
         random_index_row=rn.randint(0, table_len_row)
         random_index_col=rn.randint(0, table_len_col)
 
         # Test if index isn't already filled
-        if (table[random_index_row][random_index_col] != filled_value):
-            table[random_index_row][random_index_col] = filled_value
+        if (table[random_index_row][random_index_col] != fill_value):
+            table[random_index_row][random_index_col] = fill_value
+        else:
+            i-=1
 
-    return table
+    return np.array(table)
 
 char_array_count=char_array.shape[0]*char_array.shape[1]
 random_value=rn.randint(0, char_array_count)
 
+print(random_value)
 print(random_fill_sparse(char_array, random_value))

@@ -80,4 +80,24 @@ def test_roi_bbox_valueError_empty_list():
         with pytest.raises(ValueError):
                 algo.roi_bbox([])
 
+# Exercice 5
+def test_random_fill_sparse():
+        fill_value='/'
+        np_array=algo.random_fill_sparse(algo.char_array, 3, fill_value)
+        count=len(np.argwhere(np_array==fill_value))
+        assert 3 == count
+
+# Errors
+def test_random_fill_sparse_TypeError_list():
+        with pytest.raises(TypeError):
+                algo.random_fill_sparse(8, 1)
+
+def test_random_fill_sparse_valueError_empty_list():
+        with pytest.raises(ValueError):
+                algo.random_fill_sparse([], 1)
+
+def test_random_fill_sparse_TypeError_int():
+        with pytest.raises(TypeError):
+                algo.random_fill_sparse(8, 'a')
+
 
