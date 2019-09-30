@@ -8,11 +8,15 @@ Created on Sun Sep 29 21:44:54 2019
 
 import pytest
 import numpy as np
+import cv2
 import S1_aglotools as algo
+
+# INIT UTILS VARIABLES #
+array=[1,5,8,7,0,-5,4-2,0,10,9,7]
 
 # Exercice 1
 def test_averrage_above_zero():
-        assert algo.average_above_zero(algo.array) == 6.125
+        assert algo.average_above_zero(array) == 6.125
 
 # Errors
 def test_averrage_TypeError_list():
@@ -37,7 +41,7 @@ def test_averrage_char_list():
 
 # Exercice 2
 def test_max_value():
-        assert algo.max_value(algo.array) == (10, 8)
+        assert algo.max_value(array) == (10, 8)
 
 # Errors
 def test_max_value_TypeError_list():
@@ -55,7 +59,7 @@ def test_max_value_char_list():
 # Exercice 3
 def test_reverse_table():
         answer=[7, 9, 10, 0, 2, -5, 0, 7, 8, 5, 1]
-        assert algo.reverse_table(algo.array) == answer
+        assert algo.reverse_table(array) == answer
 
 # Errors
 def test_reverse_table_TypeError_list():
@@ -68,8 +72,9 @@ def test_reverse_table_ValueError_empty_list():
 
 # Exercice 4
 def test_roi_bbox():
+        img=cv2.imread('img.png', 0)
         answer=np.array([[16, 19], [16, 702], [19, 468], [702, 468]])
-        assert (algo.roi_bbox(algo.img) == answer).prod()
+        assert (algo.roi_bbox(img) == answer).prod()
 
 # Errors
 def test_roi_bboxe_TypeError_list():
