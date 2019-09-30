@@ -12,6 +12,7 @@ import S1_aglotools as algo
 def test_averrage_above_zero():
         assert algo.average_above_zero(algo.array) == 6.125
 
+
 def test_divide_by_zero():
     with pytest.raises(ZeroDivisionError):
         1/0
