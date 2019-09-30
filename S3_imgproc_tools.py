@@ -27,5 +27,5 @@ def invert_colors_manual_fast(input_img):
 # cv2.imshow("Gray levels image", img_gray)
 # cv2.imshow("BGR image", img_bgr)
 # cv2.imshow("Inversed image (slow)", invert_colors_manual(img_bgr))
-cv2.imshow("Inversed image (fast)", invert_colors_manual_fast(img_bgr))
-cv2.waitKey()
+# cv2.imshow("Inversed image (fast)", invert_colors_manual_fast(img_bgr))
+# cv2.waitKey()
