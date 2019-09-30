@@ -210,9 +210,12 @@ bbox=roi_bbox(img)
 print("Boudind box {0}".format(bbox))
 
 ''' Exercice 5 - Random array filling '''
+
+print('### Exercice 5 - Random array filling ###')
+
 import random as rn
-char_array=np.ones((10,10), dtype=np.uint8)
-char_array *= 32 # 
+char_array=np.ones((10,10), dtype=np.chararray)
+char_array *= ' ' #change all value to space
 
 def random_fill_sparse(table, k, filled_value='X'):
     '''Function that fill a specified number of K cells with cross values 
@@ -223,24 +226,29 @@ def random_fill_sparse(table, k, filled_value='X'):
         
         @return array
         Raises ValueError if input param is not a list and if is empty
+        Raise ValueError if input param k is not an integer
     '''
     if not(isinstance(table, list) or isinstance(table, np.ndarray)):
         raise ValueError('random_fill_sparse, expected a list as first input')
     if len(table)==0:
-        raise ValueError('random_fill_sparse, expect a non empty array')
+        raise ValueError('random_fill_sparse, expect a no empty array')
     if not(isinstance(k, int)):
         raise ValueError('random_fill_sparse, expected a int as second input')
     
-    table_len=len(table)
+    table_len_row=len(table)-1
+    table_len_col=table.shape[1]-1
     for i in range(k):
-        random_index=rn.randint(table_len)
+        # get random index
+        random_index_row=rn.randint(0, table_len_row)
+        random_index_col=rn.randint(0, table_len_col)
 
-        if (table[random_index] != filled_value):
-            table[random_index] = filled_value
+        # Test if index isn't already filled
+        if (table[random_index_row][random_index_col] != filled_value):
+            table[random_index_row][random_index_col] = filled_value
 
     return table
 
-char_array_count=len(char_array)
+char_array_count=char_array.shape[0]*char_array.shape[1]
 random_value=rn.randint(0, char_array_count)
 
 print(random_fill_sparse(char_array, random_value))
