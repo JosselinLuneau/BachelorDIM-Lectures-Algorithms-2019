@@ -34,7 +34,7 @@ channel = connection.channel()
 
 channel.queue_declare(queue='hello')
 
-
+#Send message
 if mode == 'SEND':
     channel.basic_publish(exchange='',
                           routing_key='hello',
@@ -43,7 +43,7 @@ if mode == 'SEND':
     print(" [x] Sent 'Hello World!'")
     
     connection.close()
-else:
+else: # Collect datas from broker
         
     channel.basic_consume(queue='hello',
                           on_message_callback=callback,                          
