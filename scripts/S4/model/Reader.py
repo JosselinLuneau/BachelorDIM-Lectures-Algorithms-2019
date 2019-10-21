@@ -38,6 +38,13 @@ class Reader:
             ch.basic_ack(number)
             
         def callbackSleep(ch,method, properties, body):
+            '''Callback call when a data is fetch from cloud
+
+                @param ch : a string
+                @param method : a string
+                @param properties : a boolean
+                @param body : a string -> body message
+            '''
             time.sleep(1)
             number=method.delivery_tag
             print(" [{0}] Received {1}".format(number ,body))

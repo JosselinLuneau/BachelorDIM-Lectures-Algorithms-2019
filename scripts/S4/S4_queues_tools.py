@@ -19,9 +19,7 @@ def callback(ch, method, properties, body):
     print(" [x] Received %r" % body)
 
 
-
 amqp_url=config.COUD_AMQP_URL # get url of broker
-
 
 # Parse CLODUAMQP_URL (fallback to localhost)
 url = os.environ.get('CLOUDAMQP_URL',amqp_url)
