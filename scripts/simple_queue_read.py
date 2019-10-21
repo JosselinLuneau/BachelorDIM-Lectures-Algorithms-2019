@@ -1,15 +1,9 @@
 import os
 import pika
-<<<<<<< HEAD
 import time
 from model.Reader import Reader
 
 def read(amqp_url, queueName, concurrency=False, sleep=False, auto_ack=True):
-=======
-from model.Reader import Reader
-
-def read(amqp_url, queueName, concurrency=False, auto_ack=True):
->>>>>>> db88f51feaf17e68edba765290f566115f02fc37
     '''Function that read datas from amqp queue
 
         @param amqp_url : a string
