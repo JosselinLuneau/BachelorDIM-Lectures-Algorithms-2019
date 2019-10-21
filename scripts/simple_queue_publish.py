@@ -39,11 +39,11 @@ def publish(amqp_url, queueName, body, buffer=1, concurrency=False, timeout=5):
     connection.close()
 
 ''' TESTS '''
-# Get session config
+'''# Get session config
 import config
 import getpass 
   
 user = getpass.getuser() 
 amqp_url=config.COUD_AMQP_URL # get url of broker
 
-publish(amqp_url, 'presentation', user)
+publish(amqp_url, 'presentation', user)'''
