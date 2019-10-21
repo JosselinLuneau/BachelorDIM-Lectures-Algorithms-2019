@@ -21,3 +21,11 @@ Evaluation will consist of continuous control and a mid term test.
 
 
 Evaluation will take into account your code quality and assignements coverage but also github pull request and commits naming conventions and code comments.
+
+# Session 4
+
+For the session 4, you must create a `config.py` file in the root of the /scripts/ folder to configure the RabbitMQ url.
+
+**Example -**
+
+`COUD_AMQP_URL="AMQP_URL"`
