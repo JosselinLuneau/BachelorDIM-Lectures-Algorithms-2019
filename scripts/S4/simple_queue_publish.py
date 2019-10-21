@@ -17,7 +17,7 @@ def publish(amqp_url, queueName, body, buffer=1, concurrency=False, timeout=5):
     
     connection = pika.BlockingConnection(params) # Connect to CloudAMQP
     properties = pika.BasicProperties() # Init properties
-
+    
      # set delivery mode for persistant message
     if concurrency:
         properties.delivery_mode=2
