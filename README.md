@@ -24,7 +24,7 @@ Evaluation will take into account your code quality and assignements coverage bu
 
 # Session 4
 
-For the session 4, you must create a `config.py` file in the root of the /scripts/ folder to configure the RabbitMQ url.
+For the session 4, you must create a `config.py` file in the root of the /scripts/S4/ folder to configure the RabbitMQ url.
 
 **Example -**
 
