@@ -6,11 +6,12 @@ def read(amqp_url, queueName, concurrency=False, sleep=False, auto_ack=True):
 
         @param amqp_url : a string
         @param queueName : a string
+        @param concurrency :  a boolean
+        @sleep : a boolean
         @param auto_ack : a boolean
     '''
 
-    reader = Reader(1, queueName, config.CLOUD_AMQP_URL)
-    reader.InitChannel()
+    reader = Reader(1, config.CLOUD_AMQP_URL, queueName)
     reader.Consume()
 
 ''' TESTS '''

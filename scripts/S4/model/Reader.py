@@ -1,29 +1,57 @@
-import os
-import pika
+import s4_tools as tools
 import time
 
 class Reader: 
     
-    def __init__(self, id,queueName, url, timeout=5):
+    def __init__(self, id, url, queueName = '', timeout=5):
         self.id = 1
         self.queueName = queueName
         self.url = url
         self.timeout = timeout
         self.channel=''
         self.sleep = False
+        self.auto_ack = False
+
+        if self.queueName == '':
+            self.InitFanoutChannel()
+            self.auto_ack = True
+        else:
+            self.InitChannel()
     
     def InitChannel(self):
-        # Parse CLODUAMQP_URL (fallback to localhost)
-        url = os.environ.get('CLOUDAMQP_URL',self.url)
-        params = pika.URLParameters(url)
-        params.socket_timeout = self.timeout
+        '''Function that init channel to read
 
-        connection = pika.BlockingConnection(params) # Connect to CloudAMQP
+            @param self : a instance
+        '''
+        connection = tools.InitConnection()
+        
         self.channel = connection.channel()
         self.channel.queue_declare(queue=self.queueName)
+        
+    def InitFanoutChannel(self):
+            '''Function that init channel with fanout exchange
+
+                @param self : a instance
+            '''
+            connection = tools.InitConnection()
+        
+            self.channel = connection.channel()
+            self.channel.exchange_declare(exchange='posts',
+                             exchange_type='fanout')
+    
+            result= self.channel.queue_declare(exclusive=True,
+                                        queue = '')
+            
+            self.queueName = result.method.queue # et the queuname
+            
+            self.channel.queue_bind(exchange='posts',
+                            queue = self.queueName)
     
     def Consume(self):
+        '''Function that sart the channel consume
 
+            @param self : a instance
+        '''
         # callback to receive message
         def callback(ch, method, properties, body):
             '''Callback call when a data is fetch from cloud
@@ -35,7 +63,8 @@ class Reader:
             '''
             number=method.delivery_tag
             print("Reader {0} : [Message-{1}] Received {2}".format(self.id, number ,body))
-            ch.basic_ack(number)
+            if self.auto_ack == False:
+                ch.basic_ack(number)
             
         def callbackSleep(ch,method, properties, body):
             '''Callback call when a data is fetch from cloud
@@ -51,16 +80,15 @@ class Reader:
             ch.basic_ack(number)
 
         if self.sleep:
-            print("Sleep Mode")
             # Collect datas from broker
             self.channel.basic_consume(queue=self.queueName,
                                 on_message_callback=callbackSleep,                          
-                                auto_ack=False)
+                                auto_ack=self.auto_ack)
         else:
             # Collect datas from broker
             self.channel.basic_consume(queue=self.queueName,
                                     on_message_callback=callback,                          
-                                    auto_ack=False)
+                                    auto_ack=self.auto_ack)
 
         print(' [*] Waiting for messages. To exit press CTRL+C')
         self.channel.start_consuming()
