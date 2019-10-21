@@ -4,7 +4,7 @@ import getpass # Get session config
 
 # Config variables
 user = getpass.getuser() 
-amqp_url=config.COUD_AMQP_URL # get url of broker
+amqp_url=config.CLOUD_AMQP_URL # get url of broker
 queueName='presentation'
 
 # Creae arguments
@@ -20,8 +20,8 @@ args = parser.parse_args()
 concurrency = args.concurrency
 sleep = bool(args.sleep)
 if args.read:
-   import simple_queue_read as sqr
-   sqr.read(amqp_url, queueName, concurrency, sleep)
+    import simple_queue_read as sqr
+    sqr.read(amqp_url, queueName, concurrency, sleep)
 else:
     import simple_queue_publish as sqp
     sqp.publish(amqp_url, queueName, user, args.number, concurrency)
