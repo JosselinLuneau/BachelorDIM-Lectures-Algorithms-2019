@@ -1,9 +1,15 @@
 import os
 import pika
+<<<<<<< HEAD
 import time
 from model.Reader import Reader
 
 def read(amqp_url, queueName, concurrency=False, sleep=False, auto_ack=True):
+=======
+from model.Reader import Reader
+
+def read(amqp_url, queueName, concurrency=False, auto_ack=True):
+>>>>>>> db88f51feaf17e68edba765290f566115f02fc37
     '''Function that read datas from amqp queue
 
         @param amqp_url : a string
@@ -25,17 +31,17 @@ def read(amqp_url, queueName, concurrency=False, sleep=False, auto_ack=True):
         ch.basic_ack(number)
     
     def callbackSleep(ch,method, properties, body):
-        '''Callback call when a data is fetch from cloud and sleep option is on
+    '''Callback call when a data is fetch from cloud and sleep option is on
 
-            @param ch : a string
-            @param method : a string
-            @param properties : a boolean
-            @param body : a string -> body message
-        '''
-        time.sleep(1)
-        number=method.delivery_tag
-        print(" [{0}] Received {1}".format(number ,body))
-        ch.basic_ack(number)
+        @param ch : a string
+        @param method : a string
+        @param properties : a boolean
+        @param body : a string -> body message
+    '''
+    time.sleep(1)
+    number=method.delivery_tag
+    print(" [{0}] Received {1}".format(number ,body))
+    ch.basic_ack(number)
 
     # Parse CLODUAMQP_URL (fallback to localhost)
     url = os.environ.get('CLOUDAMQP_URL',amqp_url)
@@ -61,7 +67,6 @@ def read(amqp_url, queueName, concurrency=False, sleep=False, auto_ack=True):
 
     print(' [*] Waiting for messages. To exit press CTRL+C')
     channel.start_consuming()
-
 
 ''' TESTS '''
 '''# Get session config
